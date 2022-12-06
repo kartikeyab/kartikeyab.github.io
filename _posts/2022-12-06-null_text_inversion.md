@@ -10,13 +10,9 @@ In this blogpost we explore a technique called Null-Text Inversion for real imag
 
 1. Inversion: The goal of this step is to find a noise vector that approximately produces the input image when fed with the input prompt into the diffusion process while preserving the editing capabilities of the model. Authors use DDIM inversion for this step.
 
-2. Null-Text Optimisation: Optmizing the unconditional text embedding to invert the input image and input prompt
-inputs: noise vector(s) obtained in step 1, input prompt, unconditional embeddings
-outputs: optimised unconditional embeddings
+2. Null-Text Optimisation: Optmizing the unconditional text embedding to invert the input image and the prompt.
 
-3. Edited Image generation: Diffuse the image with edited prompt, null-text embeddings and noise vector obtained from steps 1 and 2
-inputs: edited text prompt, noise vector(s) obtained in step 1, optimised unconditional embeddings obtained in step 2
-outputs: edited image
+3. Edited Image generation: Diffuse the image with edited prompt, optimized null-text embeddings and noise vector obtained from steps 2 and 1 respectively.
 
 ## Code
 
@@ -114,9 +110,13 @@ all_latents = ddim_inversion(latent, text_embeddings, pipe.scheduler, pipe.unet)
 ```
 
 ### Null-Text Optimisation
-Unconditional or null-text embeddings significantly contribute to what the denoised image looks like. Our aim here is to find an optimised null-text emebdding that can help us "invert" our input image.
+Unconditional or null-text embeddings significantly contribute to what the denoised image looks like. Our aim here is to find an optimised null-text embedding that can help us "invert" our input image.
 
-To do that, we use the pivots obtained in step-1 as labels (since every pivot holds information about the input image). We now initialise a null-text embedding, and create a denoising trajectory starting with the last latent (z50) obtained from Step-1. We calculate the mse-loss between the noise prediction obtained by using ( zt (t=50), input prompt and null-text embedding ) and the pivot zt-1. This loss is backpropagated and is used to update the null-text embeddings. The updated null-text emebddings will try to reduce the loss by predicting noise that is more similar to zt-1, thereby including more artificats of the input image, which in-turn helps in inverting it.
+To do that, we use the pivots obtained in step-1 as labels (since every pivot holds information about the input image). We now initialise a null-text embedding, and create a denoising trajectory starting with the last latent (z50*) obtained from Step-1.  
+
+We calculate the mse-loss between the noise prediction obtained by using ( zt* (t=50), input prompt and null-text embedding ) and the pivot zt*-1.  
+
+This loss is backpropagated and is used to update the null-text embeddings. The updated null-text embeddings will try to reduce the loss by predicting noise that is more similar to zt*-1, thereby including more artificats of the input image.
 
 ![Null-Text Optimisation](/images/null_text_opt.jpg)
 
