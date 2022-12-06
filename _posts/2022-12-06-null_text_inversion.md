@@ -266,7 +266,8 @@ show_image(edit_img.squeeze())
 ![Horse Edit](/images/horse_city.png)
 
 
-There is a lot of room for improvement but this is a good starting point. We can play with the guidance scale, loss function, etc. and see how it affects the image inversion. You can find the notebook here.
+There is a lot of room for improvement but this is a good starting point. We can play with the guidance scale, loss function, etc. and see how it affects the image inversion. You can find the notebook [here.](https://github.com/kartikeyab/fastdiffusion/blob/main/null_text_inversion.ipynb)
+
 ```
 sources:
 https://arxiv.org/abs/2211.09794
