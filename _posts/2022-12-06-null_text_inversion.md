@@ -238,6 +238,8 @@ plt.show()
 
 ![Inverted Image](/images/horse_recon.png)
 
+We have successfully inverted the input image i.e we have found the optimised null-text embedding and a latent, which when diffused with the input prompt, approximately reconstructs our input image. We can now perform the desired editing.
+
 ### Editing the Inverted image
 The final step is to take
 
@@ -254,6 +256,7 @@ show_image(edit_img.squeeze())
 ```
 ![Zebra Edit](/images/zebra.png)
 
+
 ```
 edit_prompt = "A horse running in a city"
 edit_img = reconstruct(pipe, z_T, edit_prompt, all_null_texts, guidance_scale=1.0)
@@ -263,6 +266,7 @@ show_image(edit_img.squeeze())
 ![Horse Edit](/images/horse_city.png)
 
 
+There is a lot of room for improvement but this is a good starting point. We can play with the guidance scale, loss function, etc. and see how it affects the image inversion. You can find the notebook here.
 ```
 sources:
 https://arxiv.org/abs/2211.09794
