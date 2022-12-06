@@ -1,4 +1,4 @@
-# About
+# About Me
 
-This is where you put the contents of your *About* page. Like all your pages, it's in [Markdown](https://guides.github.com/features/mastering-markdown/) format.
+I am a deep learning engineer and founder of [spoofsense](https://spoofsense.ai/). My team and I are using deep learning to make face recognition technology spoof-proof.
 
