@@ -79,7 +79,7 @@ text_embeddings = pipe._encode_prompt(input_prompt, device, 1, False, None)
 ### DDIM Inversion
 The goal of this step is to obtain a noise vector trajectory by gradually adding noise to the input image. Authors refer to this trajectory as a Pivot. Authors use a DDIM sampler to add noise in the input image over 50 timesteps.
 
-![DDIM Inversion step](images/DDIM_inversion.jpg)
+![DDIM Inversion step](/images/DDIM_inversion.jpg)
 
 ```
 @torch.no_grad()
@@ -118,7 +118,7 @@ Unconditional or null-text embeddings significantly contribute to what the denoi
 
 To do that, we use the pivots obtained in step-1 as labels (since every pivot holds information about the input image). We now initialise a null-text embedding, and create a denoising trajectory starting with the last latent (z50) obtained from Step-1. We calculate the mse-loss between the noise prediction obtained by using ( zt (t=50), input prompt and null-text embedding ) and the pivot zt-1. This loss is backpropagated and is used to update the null-text embeddings. The updated null-text emebddings will try to reduce the loss by predicting noise that is more similar to zt-1, thereby including more artificats of the input image, which in-turn helps in inverting it.
 
-![Null-Text Optimisation](images/null_text_opt.jpg)
+![Null-Text Optimisation](/images/null_text_opt.jpg)
 
 ```
 def null_text_inversion(
@@ -236,7 +236,7 @@ ax[1].axis('off')
 plt.show()
 ```
 
-![Inverted Image](images/horse_recon.png)
+![Inverted Image](/images/horse_recon.png)
 
 ### Editing the Inverted image
 The final step is to take
@@ -252,7 +252,7 @@ edit_img = reconstruct(pipe, z_T, edit_prompt, all_null_texts, guidance_scale=1.
 show_image(edit_img.squeeze())
 
 ```
-![Zebre Edit](images/zebra.png)
+![Zebra Edit](/images/zebra.png)
 
 ```
 edit_prompt = "A horse running in a city"
@@ -260,7 +260,7 @@ edit_img = reconstruct(pipe, z_T, edit_prompt, all_null_texts, guidance_scale=1.
 show_image(edit_img.squeeze())
 
 ```
-![Zebre Edit](images/horse_city.png)
+![Horse Edit](/images/horse_city.png)
 
 
 ```
