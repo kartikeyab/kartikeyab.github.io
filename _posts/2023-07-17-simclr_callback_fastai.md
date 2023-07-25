@@ -41,12 +41,16 @@ Let's convert the pseudocode math to python code step-by-step using an example:
 ```
 # given a batch of two images: (im1, im2)
 
-> we take two different augmentation function V1 and V2 and pass the batch through them to obtain two batches corresponding these augmentations:
+> we take two different augmentation function V1 and V2 
+  and pass the batch through them to obtain two batches 
+  corresponding these augmentations:
 
     (im1_V1, im2_V1) = V1(im1, im2)
     (im1_V2, im2_V2) = V2(im1, im2) 
 
-> encoder 'f' is a resnet50 body and a projection head 'g' is a simple MLP. Pass the augmented batches through f and then g. let's call g(f()) = p()
+> encoder 'f' is a resnet50 body and a projection head 
+  'g' is a simple MLP. Pass the augmented batches 
+  through f and then g. let's call g(f()) = p()
 
     z1 = p( im1_V1, im2_V1 )
     z2 = p( im1_V2, im2_V2 )
@@ -58,7 +62,9 @@ Let's convert the pseudocode math to python code step-by-step using an example:
          projection_im1_v2,
          projection_im2_v2 ]
 
-> calculate pairwise similarity in z (or the similarity matrix which is nothing but dot product of z with z's transpose)
+> calculate pairwise similarity in z 
+  (or the similarity matrix which is nothing 
+  but dot product of z with z's transpose)
 
     sim = z @ z.T
 
@@ -119,3 +125,9 @@ class SimCLRCallback(Callback):
 ```
 
 ## Drawbacks of SimCLR
+1. SimCLR requires a high batch size.
+2. SimCLR requires a large amount of data to learn meaningful representations.
+
+## To Do
+Plot visualisation of SimCLR learned representations
+
