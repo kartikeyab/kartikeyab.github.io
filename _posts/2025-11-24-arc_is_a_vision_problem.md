@@ -1,5 +1,3 @@
-draft
-
 # Solving ARC with a Vision Transformer
 
 This paper had me hooked throughout this weekend. One of the authors is the OG Kaiming He, so I had to dig in and implement (plus the official repo is not out yet and I could not wait).
@@ -19,6 +17,6 @@ Most approaches treat ARC as:
 
 This new paper says something beautifully obvious in hindsight:
 
-> ARC is *inherently visual*. Let’s solve it as a **vision problem**.
+> ARC is *inherently visual*.
 
 ---
