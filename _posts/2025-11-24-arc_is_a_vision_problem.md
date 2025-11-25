@@ -1,5 +1,7 @@
 # Solving ARC with a Vision Transformer
 
+Paper Link: (https://arxiv.org/pdf/2511.14761)
+
 This paper had me hooked throughout this weekend. One of the authors is the OG Kaiming He, so I had to dig in and implement (plus the official repo is not out yet and I could not wait).
 
 Computer Vision is so back! The authors took a contrarian appraoch to solving the ARC challenge. Although, calling it contrarian feels a bit weird because ARC is fundamentally a Vision problem, yet 
